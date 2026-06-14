@@ -2,78 +2,75 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مفاجأة لنانسي 🧼✨</title>
+    <title>مفاجأة نانسي الخاصة 🧼💖</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: linear-gradient(135deg, #fdf6f7 0%, #fce7f3 100%); display: flex; flex-direction: column; align-items: center; min-height: 100vh; font-family: 'Cairo', sans-serif; padding: 20px; }
-        
-        .main-card { background: white; padding: 30px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 600px; }
-        
-        #timer { font-size: 20px; font-weight: 900; color: #881337; margin: 20px 0; background: #fff1f2; padding: 15px; border-radius: 15px; }
-        
-        .bubble-grid { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-        .bubble { width: 50px; height: 50px; background: rgba(255,255,255,0.8); border: 2px solid #fbcfe8; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .bubble:hover { transform: scale(1.1); }
-        
-        #message { font-size: 22px; font-weight: 700; color: #4c0519; line-height: 1.8; margin-top: 30px; text-align: center; }
-        
-        #popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-size: 24px; font-weight: bold; color: #be185d; display: none; z-index: 100; border: 2px solid #fbcfe8; }
+        body { margin: 0; background: linear-gradient(135deg, #fdf6f7 0%, #fce7f3 100%); display: flex; flex-direction: column; align-items: center; min-height: 100vh; font-family: 'Cairo', sans-serif; padding: 20px; text-align: center; }
+        .main-card { background: white; padding: 30px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); width: 100%; max-width: 600px; margin-top: 20px; }
+        #timer { font-size: 18px; font-weight: 800; color: #881337; margin: 20px 0; background: #fff1f2; padding: 15px; border-radius: 20px; }
+        .bubble-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
+        .bubble { width: 60px; height: 60px; background: #fce7f3; border: 3px solid #f472b6; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 25px; transition: transform 0.3s; }
+        .bubble:hover { transform: scale(1.15); }
+        #message { font-size: 20px; font-weight: 700; color: #4c0519; line-height: 1.8; margin-top: 20px; }
+        #start-btn { background: #db2777; color: white; padding: 15px 40px; border-radius: 50px; border: none; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 10px 20px rgba(219,39,119,0.3); }
+        #popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); font-size: 24px; font-weight: bold; color: #be185d; display: none; z-index: 100; border: 4px solid #fbcfe8; }
     </style>
 </head>
 <body>
 
     <div class="main-card">
-        <div id="timer">جاري التحميل...</div>
+        <h1>أجمل صباح لنانسي 🧼✨</h1>
+        <div id="timer">اضغطي الزر للبدء...</div>
         
+        <button id="start-btn" onclick="startExperience()">ابدئي يومك يا وش السعد 💖</button>
+
         <div class="bubble-grid" id="bubble-grid">
-            <!-- 10 فقاعات ثابتة -->
-            <script>
-                for(let i=0; i<10; i++) {
-                    document.write('<div class="bubble" onclick="pop(this)">🫧</div>');
-                }
-            </script>
+            <script>for(let i=0; i<10; i++) document.write('<div class="bubble" onclick="pop(this)">🧼</div>');</script>
         </div>
 
         <div id="message"></div>
     </div>
 
     <div id="popup"></div>
+    <audio id="bg-music" src="nona.mp3" loop></audio>
 
     <script>
-        // العداد
-        const start = new Date('2026-06-13T00:00:00');
-        setInterval(() => {
-            const diff = new Date() - start;
-            const d = Math.floor(diff / 86400000);
-            const h = Math.floor((diff % 86400000) / 3600000);
-            const m = Math.floor((diff % 3600000) / 60000);
-            const s = Math.floor((diff % 60000) / 1000);
-            document.getElementById('timer').innerText = `مر على بداية نجاحك: ${d} يوم، ${h} ساعة، ${m} دقيقة، و ${s} ثانية`;
-        }, 1000);
+        function startExperience() {
+            // تشغيل الأغنية
+            document.getElementById('bg-music').play();
+            document.getElementById('start-btn').style.display = 'none';
+            
+            // تفعيل العداد
+            const start = new Date('2026-06-13T00:00:00');
+            setInterval(() => {
+                const diff = new Date() - start;
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                document.getElementById('timer').innerText = `مر على بداية نجاحك: ${d} يوم، ${h} ساعة، و ${m} دقيقة`;
+            }, 1000);
 
-        // الرسالة
+            // بدء كتابة الرسالة
+            type();
+        }
+
         const text = "صباح الخير يا نانسي يا حبيبتي.. النهاردة مش يوم عادي، ده يوم بداية حلمك اللي كنتِ فيه وبشوفه بيكبر قدام عيني. أنا عايزك تعرفي إن فخري بيكي ملوش حدود، ومش بس فخور بمشروعك، أنا فخور بيكي كإنسانة طموحة ومبدعة. كل قطعة صابون بتعمليها هي حتة من قلبك وذوقك. ربنا يوفقك في خطوتك الجديدة دي، ويجعل المحل ده مصدر رزق وسعادة ونجاح كبير ليكي.. أنا دايماً في ظهرك، ومشجعك الأول، ومستني أشوفك أكبر سيدة أعمال في الدنيا. بحبك! ❤️";
         let i = 0;
         function type() {
             if (i < text.length) {
                 document.getElementById("message").innerHTML += text.charAt(i);
                 i++;
-                setTimeout(type, 60);
+                setTimeout(type, 50);
             }
         }
-        type();
 
-        // الفقاعات
         function pop(el) {
-            const msgs = ["بحبك يا عمري ❤️", "أشطر سيدة أعمال 👑", "فخور بيكي جداً 🌟", "يا سكر 🌸", "بالتوفيق يا بطلة 🚀", "وش السعد عليا 🫧", "أحلى ريحة في حياتي 🧼", "دايماً معاكي وفي ضهرك 💪", "إنتي النور اللي في يومي ✨", "كل يوم بتبهريني 💖"];
+            const msgs = ["بحبك يا عمري ❤️", "أشطر سيدة أعمال 👑", "فخور بيكي جداً 🌟", "يا سكر 🌸", "بالتوفيق يا بطلة 🚀", "وش السعد عليا 🫧", "أحلى ريحة في حياتي 🧼", "دايماً معاكي وفي ضهرك 💪", "إنتي النور اللي في يومي ✨", "بتبهريني بذكائك 💖"];
             const p = document.getElementById('popup');
             p.innerText = msgs[Math.floor(Math.random() * msgs.length)];
             p.style.display = 'block';
-            el.style.visibility = 'hidden'; // تختفي الفقاعة
-            setTimeout(() => {
-                p.style.display = 'none';
-                el.style.visibility = 'visible'; // ترجع بعد ثانية
-            }, 1500);
+            el.style.opacity = '0.3';
+            setTimeout(() => { p.style.display = 'none'; el.style.opacity = '1'; }, 1200);
         }
     </script>
 </body>
