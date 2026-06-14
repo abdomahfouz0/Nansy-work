@@ -1,1 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مبروك يا أحلى سيدة أعمال! 🧼✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
 
+        body {
+            background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* حاوية فقاعات الصابون */
+        #bubble-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5), 0 2px 5px rgba(0,0,0,0.05);
+            animation: floatUp 8s linear infinite;
+            pointer-events: auto;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .bubble:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) translateX(0) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(50vh) translateX(20px) scale(1.05);
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-10px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* الكلمات اللي بتظهر لما الفقاعة تفرقع */
+        .pop-text {
+            position: absolute;
+            color: #b45309;
+            font-weight: bold;
+            font-size: 14px;
+            animation: fadeOutText 1.5s ease-out forwards;
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2px 8px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        @keyframes fadeOutText {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-30px) scale(0.8); }
+        }
+
+        /* المحتوى الرئيسي */
+        .main-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(162, 28, 175, 0.1);
+            margin-top: 40px;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #6b21a8;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .instruction {
+            background: #fdf2f8;
+            color: #db2777;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 25px;
+            border: 1px dashed #f472b6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* العداد */
+        .counter-section {
+            background: white;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 25px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #f3e8ff;
+        }
+
+        .counter-title {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #7c3aed;
+        }
+
+        /* شهادة الدعم */
+        .certificate {
+            border: 2px dashed #ca8a04;
+            background: #fef08a;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .certificate::before {
+            content: "👑 VIP 👑";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ca8a04;
+            color: white;
+            padding: 2px 12px;
+            font-size: 11px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        .certificate p {
+            color: #713f12;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        /* زرار الاحتفال */
+        .celebrate-btn {
+            background: linear-gradient(45deg, #ec4899, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .celebrate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+        }
+
+        /* عناصر الـ Confetti الديجيتال */
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #f00;
+            position: absolute;
+            z-index: 1000;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bubble-container"></div>
+
+    <div class="main-card">
+        <h1>صباح الخير يا أجمل وأشطر سيدة أعمال.. <br>✨ مبروك على محل الصابون الجديد ✨</h1>
+        
+        <span class="instruction">🧼 فرقعي الفقاعات الطايرة على الشاشة وشوفي المستخبي!</span>
+
+        <div class="counter-section">
+            <div class="counter-title">أول خطوة في رحلة نجاحك اللي هتكبر كل يوم ومستمرة بقالها:</div>
+            <div class="timer" id="live-timer">جاري حساب الوقت...</div>
+        </div>
+
+        <div class="certificate">
+            <p>أنا عبد الله، بتعهد إني أكون الزبون رقم واحد، والداعم الأول ليكي مدى الحياة. ربنا يوفقك ويفتحها عليكي يا رب يا حبيبتي.</p>
+        </div>
+
+        <button class="celebrate-btn" onclick="triggerCelebration()">دوس هنا عشان تبدأي يومك بقوة 🚀</button>
+    </div>
+
+    <script>
+        // الكلمات الرومانسية المخصصة للفقاعات
+        const sweetPhrases = [
+            "بحبك ❤️", 
+            "فخور بيكي جداً 🌟", 
+            "وش السعد 🫧", 
+            "أحلى ريحة في الدنيا 🌸", 
+            "دايماً معاكي وفي ضهرك 💪", 
+            "أجمل سيدة أعمال 👑", 
+            "خطوة لنجاح عظيم 🚀", 
+            "يا رب آية الرزق والخير 🤲"
+        ];
+
+        const container = document.getElementById('bubble-container');
+
+        // دالة إنشاء الفقاعات الطائرة
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            
+            // حجم عشوائي للفقاعة
+            const size = Math.random() * 40 + 40; // بين 40px و 80px
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            
+            // مكان أفقي عشوائي
+            bubble.style.left = `${Math.random() * 90}%`;
+            
+            // سرعة حركة عشوائية
+            const duration = Math.random() * 5 + 6; // بين 6s و 11s
+            bubble.style.animationDuration = `${duration}s`;
+
+            // عند الضغط على الفقاعة (فرقعتها)
+            bubble.addEventListener('click', function(e) {
+                popBubble(e.clientX, e.clientY);
+                bubble.remove(); // تختفي الفقاعة فورا
+            });
+            bubble.addEventListener('touchstart', function(e) {
+                const touch = e.touches[0];
+                popBubble(touch.clientX, touch.clientY);
+                bubble.remove();
+            });
+
+            container.appendChild(bubble);
+
+            // مسح الفقاعة بعد انتهاء الأنميشن عشان الكود يفضل خفيف
+            setTimeout(() => {
+                bubble.remove();
+            }, duration * 1000);
+        }
+
+        // دالة التفرقع وإظهار النص
+        function popBubble(x, y) {
+            const textEl = document.createElement('div');
+            textEl.classList.add('pop-text');
+            
+            // اختيار جملة عشوائية
+            const randomPhrase = sweetPhrases[Math.floor(Math.random() * sweetPhrases.length)];
+            textEl.innerText = randomPhrase;
+            
+            // ضبط مكان النص مكان الضغط بالظبط
+            textEl.style.left = `${x}px`;
+            textEl.style.top = `${y}px`;
+            
+            document.body.appendChild(textEl);
+            
+            // مسح النص بعد ما يختفي
+            setTimeout(() => {
+                textEl.remove();
+            }, 1500);
+        }
+
+        // إنشاء فقاعات باستمرار كل 800 مللي ثانية
+        setInterval(createBubble, 800);
+
+        // حساب الوقت التنازلي/التصاعدي من يوم 13 يونيو 2026
+        const startDate = new Date('2026-06-13T00:00:00');
+
+        function updateTimer() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('live-timer').innerHTML = 
+                `${days} يوم و ${hours} ساعة و ${minutes} دقيقة و ${seconds} ثانية`;
+        }
+        
+        // تحديث العداد كل ثانية
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // تأثير الاحتفال (Confetti) عند ضغط الزرار السفلي
+        function triggerCelebration() {
+            const colors = ['#f472b6', '#c084fc', '#60a5fa', '#34d399', '#fbbf24'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = `-10px`;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `scale(${Math.random() * 1 + 0.5})`;
+                confetti.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
