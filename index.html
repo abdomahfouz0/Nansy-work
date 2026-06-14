@@ -2,69 +2,76 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مفاجأة لنانسي 🧼✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: #fdf6f7; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Cairo', sans-serif; overflow: hidden; }
-        #bubble-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .bubble { position: absolute; background: radial-gradient(circle at 30% 30%, #fff, #fbcfe8); border-radius: 50%; opacity: 0.6; cursor: pointer; pointer-events: auto; animation: float 10s linear infinite; }
+        body { margin: 0; background: linear-gradient(135deg, #fdf6f7 0%, #fce7f3 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+        
+        #bubble-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+        .bubble { position: absolute; background: rgba(255, 255, 255, 0.7); border: 2px solid white; border-radius: 50%; cursor: pointer; pointer-events: auto; animation: float 7s linear infinite; z-index: 11; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(255,255,255,0.6); }
+        
         @keyframes float { 0% { transform: translateY(100vh); } 100% { transform: translateY(-100px); } }
         
-        .card { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); text-align: center; z-index: 2; width: 90%; max-width: 500px; }
-        #typewriter { font-size: 24px; font-weight: 800; color: #831843; min-height: 80px; }
-        .pop-text { position: absolute; color: #be185d; font-weight: bold; pointer-events: none; z-index: 10; animation: fade 1.5s ease-out forwards; }
-        @keyframes fade { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-50px); } }
+        .card { background: white; padding: 50px; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); text-align: center; z-index: 5; width: 85%; max-width: 700px; margin: 20px; border: 1px solid #f9a8d4; }
+        
+        #typewriter { font-size: 26px; font-weight: 800; color: #881337; line-height: 1.8; min-height: 150px; }
+        .pop-text { position: absolute; color: #be185d; font-weight: bold; font-size: 22px; z-index: 20; pointer-events: none; animation: pop 1.2s ease-out forwards; }
+        @keyframes pop { 0% { opacity: 1; transform: scale(1) translateY(0); } 100% { opacity: 0; transform: scale(1.8) translateY(-80px); } }
+        
+        .footer-note { margin-top: 40px; font-size: 18px; color: #9d174d; font-weight: 600; padding: 10px; border: 2px dashed #f472b6; border-radius: 20px; }
     </style>
 </head>
 <body>
 
     <div id="bubble-container"></div>
+    
     <div class="card">
         <div id="typewriter"></div>
-        <p style="color: #666; margin-top: 20px;">فرقعي الفقاعات اللي حواليكي وشوفي إيه المستخبي! 🫧</p>
+        <div class="footer-note">فرقعي الفقاعات اللي طايرة حواليكي وشوفي قلبي مخبي ليكي إيه! 🧼💖</div>
     </div>
 
     <script>
-        // تأثير الكتابة
-        const text = "صباح الخير يا نانسي.. يا أجمل وأشطر سيدة أعمال.. مبروك على مشروعك الجديد، أنا فخور بيكي جداً وهفضل دايماً الداعم الأول ليكي. ❤️";
+        // الرسالة الطويلة والمؤثرة
+        const text = "صباح الخير يا نانسي يا حبيبتي.. النهاردة مش يوم عادي، ده يوم بداية حلمك اللي كنت بيكي فيه وبشوفه بيكبر قدام عيني. أنا عايزك تعرفي إن فخري بيكي ملوش حدود، ومش بس فخور بمشروعك، أنا فخور بيكي كإنسانة طموحة ومبدعة. كل قطعة صابون بتعمليها هي حتة من قلبك وذوقك. ربنا يوفقك في خطوتك الجديدة دي، ويجعل المحل ده مصدر رزق وسعادة ونجاح كبير ليكي.. أنا دايماً في ظهرك، ومشجعك الأول، ومستني أشوفك أكبر سيدة أعمال في الدنيا. بحبك! ❤️";
         let i = 0;
         function type() {
             if (i < text.length) {
                 document.getElementById("typewriter").innerHTML += text.charAt(i);
                 i++;
-                setTimeout(type, 100);
+                setTimeout(type, 70);
             }
         }
         type();
 
-        // الفقاعات
         const container = document.getElementById('bubble-container');
         function createBubble() {
             const b = document.createElement('div');
             b.className = 'bubble';
-            const size = Math.random() * 60 + 40;
+            const size = Math.random() * 60 + 50;
             b.style.width = size + 'px';
             b.style.height = size + 'px';
-            b.style.left = Math.random() * 100 + '%';
-            b.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            b.style.left = Math.random() * 90 + '%';
+            b.style.animationDuration = (Math.random() * 4 + 5) + 's';
+            
             b.onclick = (e) => {
-                pop(e.clientX, e.clientY);
+                showMsg(e.clientX, e.clientY);
                 b.remove();
             };
             container.appendChild(b);
-            setTimeout(() => b.remove(), 10000);
+            setTimeout(() => b.remove(), 9000);
         }
-        setInterval(createBubble, 1000);
+        setInterval(createBubble, 700);
 
-        function pop(x, y) {
-            const msgs = ["بحبك ❤️", "يا قمر 🌸", "بالتوفيق يا بطلة 🚀", "انتي فخر ليا ✨", "دايماً في ضهرك 💪", "أحلى صابون ده ولا إيه؟ 🧼"];
+        function showMsg(x, y) {
+            const msgs = ["بحبك يا عمري ❤️", "أشطر سيدة أعمال في الدنيا 👑", "فخور بيكي جداً 🌟", "يا سكر 🌸", "خطوة لنجاحك العظيم 🚀", "وش السعد عليا 🫧", "أجمل ريحة في حياتي 🧼", "دايماً معاكي وفي ضهرك 💪", "إنتي النور اللي في يومي ✨", "كل يوم بتبهريني بذكائك 💖"];
             const t = document.createElement('div');
             t.className = 'pop-text';
             t.innerText = msgs[Math.floor(Math.random() * msgs.length)];
             t.style.left = x + 'px';
             t.style.top = y + 'px';
             document.body.appendChild(t);
-            setTimeout(() => t.remove(), 1500);
+            setTimeout(() => t.remove(), 1200);
         }
     </script>
 </body>
