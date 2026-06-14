@@ -6,20 +6,21 @@
     <title>مفاجأة لنانسي 🧼✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: linear-gradient(135deg, #fdf6f7 0%, #fce7f3 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+        body { margin: 0; background: linear-gradient(135deg, #fdf6f7 0%, #fce7f3 100%); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 100vh; font-family: 'Cairo', sans-serif; padding-top: 20px; }
         
-        #bubble-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+        #bubble-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
         .bubble { position: absolute; background: rgba(255, 255, 255, 0.7); border: 2px solid white; border-radius: 50%; cursor: pointer; pointer-events: auto; animation: float 7s linear infinite; z-index: 11; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(255,255,255,0.6); }
         
         @keyframes float { 0% { transform: translateY(100vh); } 100% { transform: translateY(-100px); } }
         
-        .card { background: white; padding: 50px; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); text-align: center; z-index: 5; width: 85%; max-width: 700px; margin: 20px; border: 1px solid #f9a8d4; }
+        .card { background: white; padding: 40px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); text-align: center; z-index: 5; width: 90%; max-width: 600px; margin-bottom: 20px; border: 1px solid #f9a8d4; }
         
-        #typewriter { font-size: 26px; font-weight: 800; color: #881337; line-height: 1.8; min-height: 150px; }
-        .pop-text { position: absolute; color: #be185d; font-weight: bold; font-size: 22px; z-index: 20; pointer-events: none; animation: pop 1.2s ease-out forwards; }
-        @keyframes pop { 0% { opacity: 1; transform: scale(1) translateY(0); } 100% { opacity: 0; transform: scale(1.8) translateY(-80px); } }
+        #typewriter { font-size: 24px; font-weight: 800; color: #881337; line-height: 1.6; min-height: 150px; }
         
-        .footer-note { margin-top: 40px; font-size: 18px; color: #9d174d; font-weight: 600; padding: 10px; border: 2px dashed #f472b6; border-radius: 20px; }
+        .timer-box { background: #fff1f2; padding: 15px; border-radius: 20px; margin-top: 20px; color: #9f1239; font-weight: bold; }
+
+        .pop-text { position: fixed; color: #be185d; font-weight: bold; font-size: 20px; z-index: 20; pointer-events: none; animation: pop 1.2s ease-out forwards; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        @keyframes pop { 0% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.5) translateY(-50px); } }
     </style>
 </head>
 <body>
@@ -28,11 +29,10 @@
     
     <div class="card">
         <div id="typewriter"></div>
-        <div class="footer-note">فرقعي الفقاعات اللي طايرة حواليكي وشوفي قلبي مخبي ليكي إيه! 🧼💖</div>
+        <div class="timer-box" id="live-timer">جاري حساب الوقت...</div>
     </div>
 
     <script>
-        // الرسالة الطويلة والمؤثرة
         const text = "صباح الخير يا نانسي يا حبيبتي.. النهاردة مش يوم عادي، ده يوم بداية حلمك اللي كنت بيكي فيه وبشوفه بيكبر قدام عيني. أنا عايزك تعرفي إن فخري بيكي ملوش حدود، ومش بس فخور بمشروعك، أنا فخور بيكي كإنسانة طموحة ومبدعة. كل قطعة صابون بتعمليها هي حتة من قلبك وذوقك. ربنا يوفقك في خطوتك الجديدة دي، ويجعل المحل ده مصدر رزق وسعادة ونجاح كبير ليكي.. أنا دايماً في ظهرك، ومشجعك الأول، ومستني أشوفك أكبر سيدة أعمال في الدنيا. بحبك! ❤️";
         let i = 0;
         function type() {
@@ -44,16 +44,27 @@
         }
         type();
 
+        // العداد
+        const startDate = new Date('2026-06-13T00:00:00');
+        function updateTimer() {
+            const diff = new Date() - startDate;
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            document.getElementById('live-timer').innerText = `مر على بداية نجاحك: ${d} يوم و ${h} ساعة`;
+        }
+        setInterval(updateTimer, 60000);
+        updateTimer();
+
+        // الفقاعات
         const container = document.getElementById('bubble-container');
         function createBubble() {
             const b = document.createElement('div');
             b.className = 'bubble';
-            const size = Math.random() * 60 + 50;
+            const size = Math.random() * 50 + 40;
             b.style.width = size + 'px';
             b.style.height = size + 'px';
-            b.style.left = Math.random() * 90 + '%';
+            b.style.left = Math.random() * 80 + 10 + '%';
             b.style.animationDuration = (Math.random() * 4 + 5) + 's';
-            
             b.onclick = (e) => {
                 showMsg(e.clientX, e.clientY);
                 b.remove();
@@ -61,15 +72,17 @@
             container.appendChild(b);
             setTimeout(() => b.remove(), 9000);
         }
-        setInterval(createBubble, 700);
+        setInterval(createBubble, 800);
 
         function showMsg(x, y) {
-            const msgs = ["بحبك يا عمري ❤️", "أشطر سيدة أعمال في الدنيا 👑", "فخور بيكي جداً 🌟", "يا سكر 🌸", "خطوة لنجاحك العظيم 🚀", "وش السعد عليا 🫧", "أجمل ريحة في حياتي 🧼", "دايماً معاكي وفي ضهرك 💪", "إنتي النور اللي في يومي ✨", "كل يوم بتبهريني بذكائك 💖"];
+            const msgs = ["بحبك يا عمري ❤️", "أشطر سيدة أعمال في الدنيا 👑", "فخور بيكي جداً 🌟", "يا سكر 🌸", "بالتوفيق يا بطلة 🚀", "وش السعد عليا 🫧", "أحلى ريحة في حياتي 🧼", "دايماً معاكي وفي ضهرك 💪", "إنتي النور اللي في يومي ✨", "بتبهريني بذكائك 💖"];
             const t = document.createElement('div');
             t.className = 'pop-text';
             t.innerText = msgs[Math.floor(Math.random() * msgs.length)];
-            t.style.left = x + 'px';
-            t.style.top = y + 'px';
+            // نخلي الرسالة تظهر في نص الشاشة عشان متبقاش بره
+            t.style.left = '50%';
+            t.style.top = '50%';
+            t.style.transform = 'translate(-50%, -50%)';
             document.body.appendChild(t);
             setTimeout(() => t.remove(), 1200);
         }
